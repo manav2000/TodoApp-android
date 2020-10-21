@@ -1,0 +1,28 @@
+<resources>
+    <string name="app_name">TodoApp</string>
+    <string name="edit_task_hint">Enter Task ...</string>
+    <string name="task_desc">description...</string>
+    <string name="time">enter time</string>
+    <string name="pick_time">pick a time</string>
+    <string name="pick_date">pick a date</string>
+    <string name="text_time">00:00</string>
+    <string name="date_text">00/00/0000</string>
+    <string name="radio_high">high</string>
+    <string name="radio_low">low</string>
+    <string name="priority">Set Priority</string>
+    <string name="save_task">Add Task</string>
+    <string name="show_list">Go To Tasks</string>
+    <string name="delBtnDesc">delete button</string>
+    <string name="editBtnDesc">edit button</string>
+    <string name="dellAllBtn">Delete All Tasks</string>
+    <string name="delAllTitle">DELETE ALL TASKS</string>
+    <string name="delAllMsg">Are you sure, you want to delete all tasks ??</string>
+    <string name="delOneTitle">DELETE TASK</string>
+    <string name="delOneMsg">Are you sure, you want to delete this tasks ??</string>
+    <string name="updateTitle">UPDATE TASK</string>
+    <string name="alertPos">Yes</string>
+    <string name="alertNeg">No</string>
+    <string name="updatePos">Update</string>
+    <string name="updateNeg">Cancel</string>
+    <string name="no_tasks">There are no tasks to be done !!!</string>
+</resources>
