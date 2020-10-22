@@ -94,8 +94,8 @@ public class MyAdapter extends RecyclerView.Adapter<MyAdapter.ViewHolder> {
                     int position = getAdapterPosition();
                     Task task = tasklist.get(position);
                     Toast.makeText(context,
-                             "ID: " + task.getId() + " TASK: " + task.getTask() + " PRIORITY: " + task.getPriority(),
-                            Toast.LENGTH_SHORT).show();
+                             "ID: " + task.getId() + " TASK: " + task.getTask() + " PRIORITY: "
+                                     + task.getPriority(), Toast.LENGTH_SHORT).show();
                 }
             });
 
@@ -118,9 +118,11 @@ public class MyAdapter extends RecyclerView.Adapter<MyAdapter.ViewHolder> {
         }
 
         public void editTask(final Task task) {
+            //create alert dialog with custom styles
             alertDialog = new AlertDialog.Builder(
                     new ContextThemeWrapper(context, R.style.AlertDialogCustom));
 
+            //create custom dialog view
             final View updateView = LayoutInflater.from(context)
                     .inflate(R.layout.edit_task_dialog, null);
 
@@ -142,6 +144,8 @@ public class MyAdapter extends RecyclerView.Adapter<MyAdapter.ViewHolder> {
                             if (!up_task.getText().toString().isEmpty()
                                     && !up_task.getText().toString().isEmpty()) {
                                 db.updateTask(task);
+                                //notifies the adapter that the task is updated and to change
+                                //itself accordingly
                                 notifyItemChanged(getAdapterPosition(), task);
                                 dialog.dismiss();
                             } else {
@@ -161,12 +165,14 @@ public class MyAdapter extends RecyclerView.Adapter<MyAdapter.ViewHolder> {
                     });
 
             AlertDialog dialog = alertDialog.create();
+            //apply custom dialog view
             dialog.setView(updateView);
             dialog.show();
 
         }
 
         public void deleteTask(final int id) {
+            //create alert dialog with custom styles
             alertDialog = new AlertDialog.Builder(
                     new ContextThemeWrapper(context, R.style.AlertDialogCustom));
 
@@ -182,6 +188,8 @@ public class MyAdapter extends RecyclerView.Adapter<MyAdapter.ViewHolder> {
 
                             db.delTask(id);
                             tasklist.remove(getAdapterPosition());
+                            //notifies the adapter that the task is deleted and to change
+                            //itself accordingly
                             notifyItemRemoved(getAdapterPosition());
                             dialog.dismiss();
 

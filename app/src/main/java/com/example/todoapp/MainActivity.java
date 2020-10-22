@@ -40,6 +40,7 @@ public class MainActivity extends AppCompatActivity {
     private RadioButton radioButton;
     private Button addTask;
     private Button showTasks;
+    private Button clearBtn;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -57,12 +58,22 @@ public class MainActivity extends AppCompatActivity {
 
                 switch(radioButton.getId()) {
                     case R.id.high:
+                        break;
                     case R.id.low:
                         break;
                 }
             }
         });
 
+        //clear all the input fields
+        clearBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                clearUp();
+            }
+        });
+
+        //adds the task to the list
         addTask.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -77,27 +88,24 @@ public class MainActivity extends AppCompatActivity {
 
                 if ( !db_task.toString().equals("") && !db_date.toString().equals("00/00/0000")
                         && !db_time.toString().equals("00:00")) {
+
                     db.addTask(new Task(db_task, db_desc, db_date, db_time, db_priority));
+
+                    clearUp();
+
                     Toast.makeText(MainActivity.this,
                             "The task was added to the list successfully!!!",
                             Toast.LENGTH_SHORT).show();
-                    enterTask.setText("");
-                    taskDesc.setText("");
-                    date.setText("00/00/0000");
-                    time.setText("00:00");
-                    if (priorities.getCheckedRadioButtonId() != -1) {
-                        radioButton.setChecked(false);
-                    }
-
                 } else {
                     Toast.makeText(MainActivity.this,
-                            "Make sure u have entered task, date, time and priority",
+                            "Make sure u have entered task, date and time",
                             Toast.LENGTH_LONG).show();
                 }
 
             }
         });
 
+        //navigates to task_list
         showTasks.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -108,6 +116,7 @@ public class MainActivity extends AppCompatActivity {
 
     }
 
+    //initialize all views in the layout
     public void intializeLayout() {
         enterTask = (EditText) findViewById(R.id.editTask);
         taskDesc = (EditText) findViewById(R.id.taskDesc);
@@ -116,48 +125,68 @@ public class MainActivity extends AppCompatActivity {
         priorities = (RadioGroup) findViewById(R.id.priorities);
         addTask = (Button) findViewById(R.id.addTask);
         showTasks = (Button) findViewById(R.id.taskList);
+        clearBtn = (Button) findViewById(R.id.clearBtn);
     }
 
+    //shows up time widget to select time
     public void showTimePickerDialog(View view) {
         DialogFragment newTimeFragment = new TimePickerFragment(time);
         newTimeFragment.show(getSupportFragmentManager(), "timePicker");
     }
 
+    //shows up date widget to select date
     public void showDatePickerDialog(View view) {
         DialogFragment newDateFragment = new DatePickerFragment(date);
         newDateFragment.show(getSupportFragmentManager(), "datePicker");
     }
 
-//    @Override
-//    protected void onResume() {
-//        super.onResume();
-//
-//        SharedPreferences sp = getSharedPreferences("TodosPref", MODE_PRIVATE);
-//        String task, description, pref_time, pref_date;
-//
-//        task  = sp.getString("task", "");
-//        description = sp.getString("description", "");
-//        pref_time  = sp.getString("time", "");
-//        pref_date  = sp.getString("date", "");
-//
-//        enterTask.setText(task);
-//        taskDesc.setText(description);
-//        time.setText(pref_time);
-//        date.setText(pref_date);
-//    }
-//
-//    @Override
-//    protected void onPause() {
-//        super.onPause();
-//
-//        SharedPreferences sharedPreferences = getSharedPreferences("TodosPref", MODE_PRIVATE);
-//        SharedPreferences.Editor editor = sharedPreferences.edit();
-//
-//        editor.putString("task", String.valueOf(enterTask.getText()));
-//        editor.putString("description", String.valueOf(taskDesc.getText()));
-//        editor.putString("time", String.valueOf(time.getText()));
-//        editor.putString("date", String.valueOf(date.getText()));
-//
-//        editor.commit();
-//    }
+    //clean up all input fields
+    public void clearUp() {
+        SharedPreferences sharedPreferences = getSharedPreferences("TodosPref", MODE_PRIVATE);
+        SharedPreferences.Editor editor = sharedPreferences.edit();
+
+        enterTask.setText("");
+        taskDesc.setText("");
+        date.setText("00/00/0000");
+        time.setText("00:00");
+
+        editor.clear();
+
+        if (priorities.getCheckedRadioButtonId() != -1) {
+            radioButton.setChecked(false);
+        }
+    }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+
+        SharedPreferences sp = getSharedPreferences("TodosPref", MODE_PRIVATE);
+        String task, description, pref_time, pref_date;
+
+        task  = sp.getString("task", "");
+        description = sp.getString("description", "");
+        pref_time  = sp.getString("time", "");
+        pref_date  = sp.getString("date", "");
+
+        enterTask.setText(task);
+        taskDesc.setText(description);
+        time.setText(pref_time);
+        date.setText(pref_date);
+    }
+
+    @Override
+    protected void onPause() {
+        super.onPause();
+
+        SharedPreferences sharedPreferences = getSharedPreferences("TodosPref", MODE_PRIVATE);
+        SharedPreferences.Editor editor = sharedPreferences.edit();
+
+        editor.putString("task", String.valueOf(enterTask.getText()));
+        editor.putString("description", String.valueOf(taskDesc.getText()));
+        editor.putString("time", String.valueOf(time.getText()));
+        editor.putString("date", String.valueOf(date.getText()));
+
+        editor.commit();
+    }
 }

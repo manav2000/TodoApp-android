@@ -9,8 +9,8 @@
 
     <LinearLayout
         android:id="@+id/linearLayout"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_width="289dp"
+        android:layout_height="303dp"
         android:orientation="vertical"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
@@ -47,7 +47,7 @@
             android:textColorHint="@color/colorSecondary" />
 
         <LinearLayout
-            android:layout_width="wrap_content"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="10dp"
             android:orientation="horizontal">
@@ -64,9 +64,9 @@
 
             <Button
                 android:id="@+id/pickTime"
-                android:layout_width="102dp"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:background="@color/colorPrimary"
+                android:background="@drawable/border"
                 android:onClick="showTimePickerDialog"
                 android:text="@string/pick_time"
                 android:textColor="@android:color/white"
@@ -75,7 +75,7 @@
         </LinearLayout>
 
         <LinearLayout
-            android:layout_width="wrap_content"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="10dp"
             android:orientation="horizontal">
@@ -91,9 +91,9 @@
                 android:textSize="20sp" />
 
             <Button
-                android:layout_width="102dp"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:background="@color/colorPrimary"
+                android:background="@drawable/border"
                 android:onClick="showDatePickerDialog"
                 android:text="@string/pick_date"
                 android:textColor="@android:color/white"
@@ -116,7 +116,6 @@
                 android:layout_weight="1"
                 android:gravity="center_vertical"
                 android:text="@string/priority"
-                android:textAlignment="textEnd"
                 android:textColor="@color/colorSecondary"
                 android:textSize="20sp" />
 
@@ -161,8 +160,8 @@
     </LinearLayout>
 
     <LinearLayout
-        android:layout_width="228dp"
-        android:layout_height="102dp"
+        android:layout_width="280dp"
+        android:layout_height="167dp"
         android:orientation="vertical"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
@@ -170,10 +169,20 @@
         app:layout_constraintTop_toBottomOf="@+id/linearLayout">
 
         <Button
+            android:id="@+id/clearBtn"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="10dp"
+            android:background="@drawable/button_border"
+            android:text="@string/clearBtn"
+            android:textColor="@android:color/white"
+            android:textStyle="bold" />
+
+        <Button
             android:id="@+id/addTask"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:background="@color/colorPrimary"
+            android:background="@drawable/button_border"
             android:text="@string/save_task"
             android:textColor="@android:color/white"
             android:textStyle="bold" />
@@ -183,7 +192,7 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:layout_marginTop="10dp"
-            android:background="@color/colorPrimary"
+            android:background="@drawable/button_border"
             android:text="@string/show_list"
             android:textColor="@android:color/white"
             android:textStyle="bold" />

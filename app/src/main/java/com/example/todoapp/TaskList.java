@@ -44,6 +44,7 @@ public class TaskList extends AppCompatActivity {
 
         final DatabaseHandler db = new DatabaseHandler(this);
 
+        //setup recycler view
         recyclerView =(RecyclerView) findViewById(R.id.recyclerView);
         recyclerView.setHasFixedSize(true);
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
@@ -71,6 +72,8 @@ public class TaskList extends AppCompatActivity {
                                 public void onClick(DialogInterface dialog, int which) {
                                     db.delAllTasks();
                                     tasklist.removeAll(tasklist);
+                                    //notifies the adapter that the tasks are deleted and to change
+                                    //itself accordingly
                                     adapter.notifyDataSetChanged();
                                     noTasks.setVisibility(View.VISIBLE);
                                     Toast.makeText(TaskList.this,

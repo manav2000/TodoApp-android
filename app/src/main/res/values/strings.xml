@@ -25,4 +25,5 @@
     <string name="updatePos">Update</string>
     <string name="updateNeg">Cancel</string>
     <string name="no_tasks">There are no tasks to be done !!!</string>
+    <string name="clearBtn">Clear</string>
 </resources>

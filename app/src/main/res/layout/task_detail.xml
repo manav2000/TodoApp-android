@@ -87,6 +87,13 @@
                 android:contentDescription="@string/editBtnDesc"
                 app:srcCompat="@android:drawable/ic_menu_edit" />
 
+            <View
+                android:id="@+id/divider2"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="0.01"
+                android:background="@color/colorSecondary" />
+
             <ImageButton
                 android:id="@+id/delBtn"
                 android:layout_width="wrap_content"

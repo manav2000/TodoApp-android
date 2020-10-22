@@ -7,8 +7,10 @@
     android:layout_height="match_parent">
 
     <LinearLayout
-        android:layout_width="312dp"
+        android:layout_width="0dp"
         android:layout_height="wrap_content"
+        android:layout_marginLeft="24dp"
+        android:layout_marginRight="24dp"
         android:background="@color/background"
         android:orientation="vertical"
         app:layout_constraintBottom_toBottomOf="parent"

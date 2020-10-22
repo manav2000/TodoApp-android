@@ -32,6 +32,7 @@ public class DatabaseHandler extends SQLiteOpenHelper {
 
     @Override
     public void onCreate(SQLiteDatabase db) {
+        //create database table with table name todos
         String CREATE_TODO_TABLE = "CREATE TABLE " + TABLE_NAME + "(" + KEY_ID +
                 " INTEGER PRIMARY KEY," + KEY_TASK + " TEXT," + KEY_DESC + " TEXT," +
                 KEY_DATE + " TEXT," + KEY_TIME + " TEXT," + KEY_PRIORITY + " TEXT" + ")";
@@ -46,6 +47,7 @@ public class DatabaseHandler extends SQLiteOpenHelper {
 
     //CRUD OPERATIONS
 
+    //add task to the table
     public void addTask(Task task) {
         SQLiteDatabase db = this.getWritableDatabase();
 
@@ -60,6 +62,7 @@ public class DatabaseHandler extends SQLiteOpenHelper {
         db.close();
     }
 
+    //query all tasks from the table
     public List<Task> getAllTasks() {
         SQLiteDatabase db = this.getReadableDatabase();
 
@@ -86,6 +89,7 @@ public class DatabaseHandler extends SQLiteOpenHelper {
         return tasklist;
     }
 
+    //get task from the table
     public Task getTask(int id) {
         SQLiteDatabase db = this.getReadableDatabase();
 
@@ -104,6 +108,7 @@ public class DatabaseHandler extends SQLiteOpenHelper {
         return task;
     }
 
+    //update the task
     public int updateTask(Task task) {
         SQLiteDatabase db = this.getWritableDatabase();
 
@@ -118,12 +123,14 @@ public class DatabaseHandler extends SQLiteOpenHelper {
                 new String[] { String.valueOf(task.getId())} );
     }
 
+    //delete the task
     public void delTask(int id) {
         SQLiteDatabase db = this.getWritableDatabase();
         db.delete(TABLE_NAME, KEY_ID + " = ?", new String[] {String.valueOf(id)});
         db.close();
     }
 
+    //delete all the tasks
     public void delAllTasks() {
         SQLiteDatabase db = this.getWritableDatabase();
         db.execSQL("DELETE FROM " + TABLE_NAME);
